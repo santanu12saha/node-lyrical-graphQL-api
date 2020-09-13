@@ -1,0 +1,39 @@
+{
+  "name": "lyrical-graphql-api",
+  "version": "1.0.0",
+  "description": "A lyrical graphql api for song and lyric create, update and like.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santanu12saha/node-lyrical-graphQL-api.git"
+  },
+  "keywords": [
+    "lyric",
+    "express",
+    "graphql",
+    "monngoose",
+    "mongodb"
+  ],
+  "author": "Santanu Saha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santanu12saha/node-lyrical-graphQL-api/issues"
+  },
+  "homepage": "https://github.com/santanu12saha/node-lyrical-graphQL-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dataloader": "^2.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0",
+    "lodash": "^4.17.20",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
