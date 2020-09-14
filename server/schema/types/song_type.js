@@ -15,8 +15,8 @@ const SongType = new GraphQLObjectType({
             title: { type: GraphQLString },
             lyrics: {
                 type: new GraphQLList(LyricType),
-                resolve(parentValue) {
-
+                resolve(parentValue, {}, { songService }) {
+                    return songService.getLyricsById(parentValue._id);
                 }
             }
         };

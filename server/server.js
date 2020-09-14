@@ -13,10 +13,11 @@ app.use('/graphql', (req, res) => {
     const loaders = {
 
     };
+    const songService = require('./service/songService');
     expressGraphQL({
         schema,
         graphiql: true,
-        context: { loaders }
+        context: { songService, loaders }
     })(req, res);
 });
 

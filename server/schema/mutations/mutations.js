@@ -1,10 +1,9 @@
 const graphql = require('graphql');
 const {
     GraphQLObjectType,
-    GraphQLString
+    GraphQLString,
+    GraphQLID
 } = graphql;
-
-const songService = require('../../service/songService');
 
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
@@ -16,8 +15,18 @@ const mutation = new GraphQLObjectType({
                 args: {
                     title: { type: GraphQLString }
                 },
-                resolve(parentValue, args) {
+                resolve(parentValue, args, { songService }) {
                    return songService.saveSong(args);
+                }
+            },
+            addLyricToSong: {
+                type: SongType,
+                args: {
+                    content: { type: GraphQLString },
+                    songId: { type: GraphQLID }
+                },
+                resolve(parentValue, {content, songId}, { songService }) {
+                    return songService.saveLyric(content, songId);
                 }
             }
         };

@@ -13,6 +13,24 @@ var insertSong = async (song) => {
     }
 };
 
+var insertLyricToSong = async (content, songId) => {
+    try {
+        return await Song.addLyric(songId, content);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+var fetchLyricsById = async (id) => {
+    try {
+        return await Song.findLyrics(id);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
-    insertSong
+    insertSong,
+    insertLyricToSong,
+    fetchLyricsById
 };

@@ -11,6 +11,24 @@ var saveSong = async (songRequest) => {
     }
 };
 
+var saveLyric = async (content, songId) => {
+    try {
+        return await songDao.insertLyricToSong(content, songId);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+var getLyricsById = async (id) => {
+    try {
+        return await songDao.fetchLyricsById(id);
+    } catch(error) {    
+        console.log(error);
+    }
+};
+
 module.exports = {
-    saveSong
+    saveSong,
+    saveLyric,
+    getLyricsById
 };
