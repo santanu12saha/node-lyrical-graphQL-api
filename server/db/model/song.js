@@ -1,5 +1,3 @@
-const client = require('../mongo-db').getMongoDbClient();
-const songSchema = require('../schema/songSchema');
-
-var song = client.model('Song', songSchema);
+const mongoose = require('mongoose');
+var song = mongoose.model('song', require('../schema/songSchema'));
 module.exports = song;

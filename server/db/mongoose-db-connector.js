@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-var connectionFactory = (MONGODB_URI, OPTIONS) => {
-    return mongoose.createConnection(MONGODB_URI, OPTIONS); 
+var connect = (MONGODB_URI, OPTIONS) => {
+    mongoose.connect(MONGODB_URI, OPTIONS); 
 };
-
-var getMongoose = () => {
-    return mongoose;
-}
 
 process.on('SIGINT', () => {
     mongoose.connection.close(() => {
@@ -16,7 +12,11 @@ process.on('SIGINT', () => {
     });
 });
 
+mongoose.connection
+    .once('open', () => console.log('Connected to Mongo instance.'))
+    .on('error', error => console.log('Error connecting to Mongo intance: ', error));
+
+
 module.exports = {
-    connectionFactory,
-    getMongoose
+    connect
 };

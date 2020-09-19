@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+const lyricService = require('../../service/lyricService');
 const {
     GraphQLObjectType,
     GraphQLID,
@@ -17,7 +18,7 @@ const LyricType = new GraphQLObjectType({
             song: {
                 type: SongType,
                 resolve(parentValue) {
-
+                    return lyricService.getSongByLyricId(parentValue);
                 }
             }
         };

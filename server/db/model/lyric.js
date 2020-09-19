@@ -1,5 +1,3 @@
-const client = require('../mongo-db').getMongoDbClient();
-const lyricSchema = require('../schema/lyricSchema');
-
-var lyric = client.model('Lyric', lyricSchema);
+const mongoose = require('mongoose');
+var lyric = mongoose.model('lyric', require('../schema/lyricSchema'));
 module.exports = lyric; 

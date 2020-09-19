@@ -1,4 +1,5 @@
 require('./config/config');
+require('./db/mongo-db');
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
@@ -14,10 +15,11 @@ app.use('/graphql', (req, res) => {
 
     };
     const songService = require('./service/songService');
+    const lyricService = require('./service/lyricService');
     expressGraphQL({
         schema,
         graphiql: true,
-        context: { songService, loaders }
+        context: { songService, lyricService, loaders }
     })(req, res);
 });
 

@@ -1,21 +1,19 @@
-const Lyric = require('../model/lyric');
-const mongoose = require('../mongo-db').getMongoose();
-mongoose.model('Lyric', require('../schema/lyricSchema'));
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const songSchema = new mongoose.Schema({
     title: { type: String },
     lyrics: [{
         type: Schema.Types.ObjectId,
-        ref: 'Lyric'
+        ref: 'lyric'
     }]
 });
 
 songSchema.statics.addLyric = function(id, content) {
+    const Lyric = mongoose.model('lyric');
     return this.findById(id)
         .then(song => {
-            const lyric = new Lyric({ content, id });
+            const lyric = new Lyric({ content, song });
             song.lyrics.push(lyric);
             return Promise.all([lyric.save(), song.save()])
                 .then(([lyric, song]) => song);

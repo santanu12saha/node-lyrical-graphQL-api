@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+const LyricType = require('../types/lyric_type');
 const {
     GraphQLObjectType,
     GraphQLString,
@@ -27,6 +28,13 @@ const mutation = new GraphQLObjectType({
                 },
                 resolve(parentValue, {content, songId}, { songService }) {
                     return songService.saveLyric(content, songId);
+                }
+            },
+            likeLyric: {
+                type: LyricType,
+                args: { id: {type: GraphQLID} },
+                resolve(parentValue, { id }, { lyricService }) {
+                    return lyricService.addLyricLikesById(id);
                 }
             }
         };
