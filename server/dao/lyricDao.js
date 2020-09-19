@@ -17,7 +17,16 @@ var fetchSongByLyricId = async (value) => {
     }
 };
 
+var fetchLyricById = async (id) => {
+    try {
+        return await Lyric.getLyricById(id);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     updateLyricLikes,
-    fetchSongByLyricId
+    fetchSongByLyricId,
+    fetchLyricById
 };

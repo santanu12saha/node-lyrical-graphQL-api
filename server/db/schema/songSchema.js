@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Lyric = require('../model/lyric');
 const Schema = mongoose.Schema;
 
 const songSchema = new mongoose.Schema({
@@ -10,7 +11,6 @@ const songSchema = new mongoose.Schema({
 });
 
 songSchema.statics.addLyric = function(id, content) {
-    const Lyric = mongoose.model('lyric');
     return this.findById(id)
         .then(song => {
             const lyric = new Lyric({ content, song });
@@ -24,6 +24,24 @@ songSchema.statics.findLyrics = function(id) {
     return this.findById(id)
         .populate('lyrics')
         .then(song => song.lyrics);
+}
+
+songSchema.statics.removeSong = function(id) {
+    return this.findOneAndRemove({ _id: id }).then(s => {
+        if(s) {
+            return Lyric.deleteMany({ song: s._id, _id: { $in: s.lyrics } }).then(() => {
+                return s;
+            });
+        }
+    });
+}
+
+songSchema.statics.getAllSongs = function() {
+    return this.find({});
+}
+
+songSchema.statics.getSongById = function(id) {
+    return this.findById(id);
 }
 
 module.exports = songSchema;

@@ -27,8 +27,35 @@ var getLyricsById = async (id) => {
     }
 };
 
+var deleteSongById = async (id) => {
+    try {
+        return await songDao.removeSong(id);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+var getAllSongs = async () => {
+    try {
+        return await songDao.fetchAllSongs();
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+var getSongById = async (id) => {
+    try {
+        return await songDao.fetchSongById(id);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     saveSong,
     saveLyric,
-    getLyricsById
+    getLyricsById,
+    deleteSongById,
+    getAllSongs,
+    getSongById
 };

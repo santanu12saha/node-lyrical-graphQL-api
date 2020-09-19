@@ -30,8 +30,35 @@ var fetchLyricsById = async (id) => {
     }
 }
 
+var removeSong = async (id) => {
+    try {
+        return await Song.removeSong(id);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+var fetchAllSongs = async () => {
+    try {
+        return await Song.getAllSongs();
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+var fetchSongById = async (id) => {
+    try {
+        return await Song.getSongById(id);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     insertSong,
     insertLyricToSong,
-    fetchLyricsById
+    fetchLyricsById,
+    removeSong,
+    fetchAllSongs,
+    fetchSongById
 };

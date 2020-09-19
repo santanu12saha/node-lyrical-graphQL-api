@@ -27,4 +27,8 @@ lyricSchema.statics.findSongByLyricId = function (value) {
         });
 };
 
+lyricSchema.statics.getLyricById = function (id) {
+    return this.findById(id);
+};
+
 module.exports = lyricSchema;

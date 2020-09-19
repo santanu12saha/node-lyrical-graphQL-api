@@ -16,7 +16,16 @@ var getSongByLyricId = async (value) => {
     }
 };
 
+var getLyricById = async (id) => {
+    try {
+        return await lyricDao.fetchLyricById(id);
+    } catch(error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     addLyricLikesById,
-    getSongByLyricId
+    getSongByLyricId,
+    getLyricById
 };

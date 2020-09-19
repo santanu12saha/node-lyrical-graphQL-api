@@ -1,7 +1,10 @@
 const graphql = require('graphql');
+const LyricType = require('./lyric_type');
 const {
     GraphQLObjectType,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull,
+    GraphQLID
 } = graphql;
 
 const SongType = require('./song_type');
@@ -11,8 +14,22 @@ const RootQueryType = new GraphQLObjectType({
     fields: () => ({
         songs: {
             type: new GraphQLList(SongType),
-            resolve() {
-                return {};
+            resolve(parentValue, {}, {songService}) {
+                return songService.getAllSongs();
+            }
+        },
+        song: {
+            type: SongType,
+            args: { id: { type: new GraphQLNonNull(GraphQLID) }},
+            resolve(parentValue, { id }, { songService }) {
+                return songService.getSongById(id);
+            }
+        },
+        lyric: {
+            type: LyricType,
+            args: { id: { type: new GraphQLNonNull(GraphQLID) }},
+            resolve(parentValue, { id }, { lyricService}) {
+                return lyricService.getLyricById(id);
             }
         }
     })
