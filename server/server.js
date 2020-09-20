@@ -11,15 +11,12 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/graphql', (req, res) => {
-    const loaders = {
-
-    };
     const songService = require('./service/songService');
     const lyricService = require('./service/lyricService');
     expressGraphQL({
         schema,
         graphiql: true,
-        context: { songService, lyricService, loaders }
+        context: { songService, lyricService }
     })(req, res);
 });
 
