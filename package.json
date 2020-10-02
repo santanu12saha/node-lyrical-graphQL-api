@@ -30,6 +30,7 @@
   "homepage": "https://github.com/santanu12saha/node-lyrical-graphQL-api#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-graphql": "^0.11.0",
     "graphql": "^15.3.0",
